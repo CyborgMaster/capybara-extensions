@@ -37,12 +37,7 @@ module CapybaraExtensions::Locators
   private
 
   def _find_image_with_regex(src)
-    all_images = all('img')
-    all_images.each do |image|
-      if image['src'].value.match(src)
-        return image['src'].value
-      end
-    end
+    all('img').each { |image| return image['src'] if image['src'].match(src) }
     nil
   end
 end
